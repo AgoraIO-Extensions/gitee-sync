@@ -1,0 +1,28 @@
+name: Mirror the Github organization repos to Gitee
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '59 15 * * *'
+      
+jobs:
+  mirror_github:
+    name: Mirror the Github organization repos to Gitee
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mirror the Github organization repos to Gitee
+        uses: Yikun/hub-mirror-action@master
+        with:
+          src: github/AgoraIO-Extensions
+          dst: gitee/agoraio-community
+          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          account_type: org
+          cache_path: "./cache"
+          force_update: true
+          white_list: "Agora-Flutter-SDK,agora-rtc-react,Agora-Unreal-RTC-SDK,Electron-SDK,Agora-C_Sharp-SDK,Agora-Unity-Quickstart,react-native-agora,RawDataPluginSample"
