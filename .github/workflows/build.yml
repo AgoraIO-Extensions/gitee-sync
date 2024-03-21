@@ -25,4 +25,4 @@ jobs:
           account_type: org
           cache_path: "./cache"
           force_update: true
-          white_list: "Agora-Flutter-SDK,agora-rtc-react,Agora-Unreal-RTC-SDK,Electron-SDK,Agora-C_Sharp-SDK,Agora-Unity-Quickstart,react-native-agora,RawDataPluginSample"
+          white_list: "Agora-Flutter-SDK,agora-rtc-react,Agora-Unreal-RTC-SDK,Electron-SDK,Agora-C_Sharp-SDK,Agora-Unity-Quickstart,react-native-agora,RawDataPluginSample,react-native-image-tools,react-native-agora-rawdata"
