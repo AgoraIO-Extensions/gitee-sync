@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Mirror the Github organization repos to Gitee
-        uses: Yikun/hub-mirror-action@master
+        uses: xgfd3/hub-mirror-action@1.3
         with:
           src: github/AgoraIO-Extensions
           dst: gitee/agoraio-community
@@ -25,4 +25,28 @@ jobs:
           account_type: org
           cache_path: "./cache"
           force_update: true
-          white_list: "Agora-Flutter-SDK,agora-rtc-react,Agora-Unreal-RTC-SDK,Electron-SDK,Agora-C_Sharp-SDK,Agora-Unity-Quickstart,react-native-agora,RawDataPluginSample,react-native-image-tools,react-native-agora-rawdata"
+          white_list: "Agora-Flutter-SDK,agora-rtc-react,Agora-Unreal-RTC-SDK,Electron-SDK,Agora-C_Sharp-SDK,Agora-Unity-Quickstart,RawDataPluginSample,react-native-image-tools,react-native-agora-rawdata"
+
+      - name: Mirror react-native-agora to Gitee
+        uses: guoxianzhe/hub-mirror-action@master
+        with:
+          src: github/AgoraIO-Extensions
+          dst: gitee/agoraio-community
+          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          account_type: org
+          cache_path: "./cache"
+          force_update: true
+          shell_command: |
+            git checkout --track gitee/dev/4.3.1
+            git config --global user.email "sync2gitee@example.com"
+            git config --global user.name "sync2gitee"
+            chmod +x ./scripts/mirror.sh && ./scripts/mirror.sh
+            git add .yarnrc.yml
+            git add example/package.json
+            git commit -m 'gitee sync >> use china repos.'
+            git branch
+            git status
+            git push gitee
+          static_list: "react-native-agora"
+          white_list: "react-native-agora"
