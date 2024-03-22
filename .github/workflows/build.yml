@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Mirror the Github organization repos to Gitee
-        uses: Yikun/hub-mirror-action@master
+        uses: guoxianzhe/hub-mirror-action@master
         with:
           src: github/AgoraIO-Extensions
           dst: gitee/agoraio-community
