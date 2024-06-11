@@ -38,7 +38,6 @@ jobs:
           cache_path: "./cache"
           force_update: true
           shell_command: |
-            git checkout --track gitee/main
             git config --global user.email "sync2gitee@example.com"
             git config --global user.name "sync2gitee"
             chmod +x ./scripts/mirror.sh && ./scripts/mirror.sh
